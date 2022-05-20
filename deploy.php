@@ -40,6 +40,7 @@ host('137.184.137.166') // Name of the server
 ->hostname('137.184.137.166') // Hostname or IP address
 ->stage('production') // Deployment stage (production, staging, etc)
 ->user('jtugume') // SSH user
+->password('sxrjjxjc123!') //SSH PASSWORD
 ->set('deploy_path', '/var/www/my-app'); // Deploy path
 
 // Staging Server

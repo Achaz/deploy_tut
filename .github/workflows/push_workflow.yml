@@ -110,9 +110,8 @@ jobs:
           php-version: 7.4
           extensions: mbstring, bcmath
       - name: Composer install
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-        name: Composer udate
-        run: update --ignore-platform-reqs
+        run: composer install -q update --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+   
       - name: Setup Deployer
         uses: atymic/deployer-php-action@master
         with:

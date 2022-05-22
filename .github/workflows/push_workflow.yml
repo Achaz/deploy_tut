@@ -84,12 +84,12 @@ jobs:
       - name: Composer install
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
       - name: Setup Deployer
-        uses: appleboy/ssh-action@master # An action made to control Linux servers
-        with: # We set all our secrets here for the action, these won't be shown in the action logs
-          host: ${{ secrets.HOST_PRODUCTION }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+        - uses: atymic/deployer-php-action@0.3.1
+              with:
+                  ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}
+                  ssh-known-hosts: ${{ secrets.SSH_KNOWN_HOSTS_PRODUCTION }}
+                  # To disable host key checking (insecure!):
+                  ssh-disable-host-key-checking: true
       - name: Deploy to PRODUCTION Server
         env:
           DOT_ENV: ${{ secrets.DOT_ENV_PRODUCTION }}
@@ -114,12 +114,12 @@ jobs:
       - name: Composer install
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
       - name: Setup Deployer
-        uses: appleboy/ssh-action@master # An action made to control Linux servers
-        with: # We set all our secrets here for the action, these won't be shown in the action logs
-          host: ${{ secrets.HOST_STAGING }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+        - uses: atymic/deployer-php-action@0.3.1
+              with:
+                  ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_STAGING }}
+                  ssh-known-hosts: ${{ secrets.SSH_KNOWN_HOSTS_STAGING }}
+                  # To disable host key checking (insecure!):
+                  ssh-disable-host-key-checking: true
       - name: Deploy to Prod
         env:
           DOT_ENV: ${{ secrets.DOT_ENV_STAGING }}

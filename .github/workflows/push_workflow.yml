@@ -79,10 +79,10 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: 7.4
-          extensions: mbstring, bcmath
+          php-version: 7.3
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
       - name: Composer install
-        run: composer install -q --no-ansi --ignore-platform-reqs --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+        run: composer install --prefer-dist --no-interaction --no-suggest
       - name: Setup Deployer
         uses: atymic/deployer-php-action@master
         with:
@@ -108,10 +108,9 @@ jobs:
         uses: shivammathur/setup-php@master
         with:
           php-version: 7.4
-          extensions: mbstring, bcmath
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
       - name: Composer install
-        run: composer install -q update --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-   
+        run: composer install --prefer-dist --no-interaction --no-suggest
       - name: Setup Deployer
         uses: atymic/deployer-php-action@master
         with:
